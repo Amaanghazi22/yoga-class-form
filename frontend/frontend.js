@@ -25,7 +25,7 @@ function submitForm() {
 })
       .then(response => response.json())
       .then(data => displayMessage(data.message))
-      .catch(error => displayMessage('An error occurred. Please try again later.'));
+      .catch(error => displayMessage(error));
   }
   
   function displayMessage(message) {
