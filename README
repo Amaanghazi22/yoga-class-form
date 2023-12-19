@@ -1,0 +1,59 @@
+
+Code Overview:
+HTML and Frontend:
+
+The HTML file defines a simple form for a Yoga Class Admission with fields for name, age, and batch selection.
+There's a button to enroll, and the form data is sent to the backend upon clicking.
+
+Frontend JavaScript (frontend.js):
+
+The submitForm function retrieves form data and performs basic validation.
+It makes a POST request to the backend API (/api/enroll) with the form data using the Fetch API.
+The response is processed, and a message is displayed on the webpage.
+
+Backend (Express and MongoDB):
+
+An Express server is set up to handle POST requests on the endpoint /api/enroll.
+The server connects to a MongoDB database and defines a schema for the participant collection.
+It includes a model (Participant) based on the schema.
+MongoDB and Schema:
+
+The MongoDB database is hosted on MongoDB Atlas (mongodb+srv).
+There's a schema for the Participant collection, including fields for name, age, and selectedBatch.
+  
+Enrollment Logic:
+
+The server-side logic validates the incoming data, checks the age limit, saves participant data to MongoDB, and simulates a payment with a mock function (CompletePayment).
+The payment response is used to determine whether the enrollment was successful.
+
+ER-DIAGRAM
++------------------+          +------------------+
+|   Participant   |          |      Batch       |
++------------------+          +------------------+
+| id (PK)          |1       m| id (PK)          |
+| name             |----------| time             |
+| age              |          |                  |
+| selectedBatch   |--------->|                  |
++------------------+          +------------------+
+Here, two entities are: "Participant" and "Batch."
+
+Participant Entity:
+
+Attributes:
+
+id (Primary Key): Unique identifier for each participant (Primary Key).
+name: The name of the participant.
+age: The age of the participant.
+selectedBatch: A foreign key referencing the id of the associated batch.
+Relationship:
+Each participant is associated with exactly one batch.
+
+
+Batch Entity:
+
+Attributes:
+
+id (Primary Key): Unique identifier for each batch (Primary Key).
+time: The time associated with the batch.
+Relationship:
+Each batch can be associated with multiple participants (one-to-many relationship).
